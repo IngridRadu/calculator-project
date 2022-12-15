@@ -101,7 +101,7 @@ decimalButton.addEventListener('click', () => {
     displayResult.textContent = displayResult.textContent + '.';
   }
 })
-window.addEventListener('keypress', (event) => {  
+window.addEventListener('press', (event) => {  
   if(
    event.key === '0' ||
    event.key === '1' ||
@@ -144,7 +144,7 @@ window.addEventListener('keypress', (event) => {
         calculate(clickedOperator, firstNumber,secondNumber);
       }
     }     
-  }else if (event.key === "8") {
+  }else if (event.key === "Backspace") {
       displayResult = displayResult.slice(0,-1);
       if (firstNumber && secondNumber) {
       secondNumber = secondNumber.slice(0,-1);
