@@ -42,7 +42,6 @@ const calculate = (operator,num1,num2) => {
   const result = operate(operator, parseFloat(num1), parseFloat(num2)).toFixed(5).replace(/[.,]00$/, "");
   displayResult.textContent = parseFloat(result);
   firstNumber = result;
-  console.log(parseFloat(result));
   secondNumber = '';
 }
 
@@ -52,14 +51,11 @@ numberButton.forEach((number) => {
       displayResult.textContent = '0';
     } else if (firstNumber && clickedOperator) {
       secondNumber += parseInt(number.textContent);
-      console.log('second', secondNumber);
       displayResult.textContent = secondNumber;
-      console.log("DR", displayResult);
     } else {
       firstNumber += parseInt(number.textContent); 
-      console.log("FN", firstNumber);
       displayResult.textContent = firstNumber;
-      console.log("elseDR", displayResult.textContent);
+ 
     }
   })
 });
@@ -95,8 +91,7 @@ backButton.addEventListener('click', () => {
       secondNumber = secondNumber.slice(0,-1);
     } else if (firstNumber) {
       firstNumber = firstNumber.slice(0,-1);
-    }
-    
+    } 
 });
 decimalButton.addEventListener('click', () => {
   if(operatorActive) {
@@ -123,14 +118,10 @@ window.addEventListener('keypress', (event) => {
       displayResult.textContent = '0';
     } else if (firstNumber && clickedOperator) {
       secondNumber += parseInt(event.key);
-      console.log('second', secondNumber);
       displayResult.textContent = secondNumber;
-      console.log("DR", displayResult);
     } else {
       firstNumber += parseInt(event.key); 
-      console.log("FN", firstNumber);
       displayResult.textContent = firstNumber;
-      console.log("elseDR", displayResult.textContent);
     }
   }else if (
   event.key === "+" ||
@@ -153,7 +144,16 @@ window.addEventListener('keypress', (event) => {
         calculate(clickedOperator, firstNumber,secondNumber);
       }
     }     
-  } else if (event.key === "Backspace") {
-    
-  }    
+  }else if (event.key === "8") {
+      displayResult = displayResult.slice(0,-1);
+      if (firstNumber && secondNumber) {
+      secondNumber = secondNumber.slice(0,-1);
+      } else if (firstNumber) {
+      firstNumber = firstNumber.slice(0,-1);
+    }
+  }else if (event.key === "Delete")  {
+      displayResult.textContent = "" ;
+      firstNumber="";
+      secondNumber="";
+  }
 });
